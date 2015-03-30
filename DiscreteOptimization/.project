@@ -14,16 +14,4 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>src/Knapsack/Solver.java</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Documents/DiscreteOptimization/knapsack/Solver.java</locationURI>
-		</link>
-		<link>
-			<name>src/coloring/Solver.java</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Documents/DiscreteOptimization/coloring/Solver.java</locationURI>
-		</link>
-	</linkedResources>
 </projectDescription>
