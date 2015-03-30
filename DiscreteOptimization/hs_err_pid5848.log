@@ -1,0 +1,145 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (malloc) failed to allocate 1048576 bytes for AllocateHeap
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   In 32 bit mode, the process size limit was hit
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Use 64 bit Java on a 64 bit OS
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (memory/allocation.inline.hpp:61), pid=5848, tid=11140
+#
+# JRE version:  (7.0_71-b14) (build )
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (24.71-b01 mixed mode windows-amd64 compressed oops)
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00000000026ba000):  JavaThread "Unknown thread" [_thread_in_vm, id=11140, stack(0x0000000002a40000,0x0000000002b40000)]
+
+Stack: [0x0000000002a40000,0x0000000002b40000]
+[error occurred during error reporting (printing stack bounds), id 0xc0000005]
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x00000000026ba000 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=11140, stack(0x0000000002a40000,0x0000000002b40000)]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap
+ PSYoungGen      total 19456K, used 338K [0x00000000eac80000, 0x00000000ec200000, 0x0000000100000000)
+  eden space 16896K, 2% used [0x00000000eac80000,0x00000000eacd4800,0x00000000ebd00000)
+  from space 2560K, 0% used [0x00000000ebf80000,0x00000000ebf80000,0x00000000ec200000)
+  to   space 2560K, 0% used [0x00000000ebd00000,0x00000000ebd00000,0x00000000ebf80000)
+ ParOldGen       total 43008K, used 0K [0x00000000c0600000, 0x00000000c3000000, 0x00000000eac80000)
+  object space 43008K, 0% used [0x00000000c0600000,0x00000000c0600000,0x00000000c3000000)
+ PSPermGen       total 21504K, used 685K [0x00000000bb400000, 0x00000000bc900000, 0x00000000c0600000)
+  object space 21504K, 3% used [0x00000000bb400000,0x00000000bb4ab798,0x00000000bc900000)
+
+Card table byte_map: [0x0000000005b40000,0x0000000005d70000] byte_map_base: 0x0000000005566000
+
+Polling page: 0x0000000000140000
+
+Code Cache  [0x0000000002b40000, 0x0000000002db0000, 0x0000000005b40000)
+ total_blobs=38 nmethods=0 adapters=20 free_code_cache=48889Kb largest_free_block=50062528
+
+Compilation events (0 events):
+No events
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (10 events):
+Event: 1.691 loading class 0x00000000026fe840
+Event: 1.692 loading class 0x00000000026fe840 done
+Event: 1.692 loading class 0x00000000026fe890
+Event: 1.692 loading class 0x00000000026fe890 done
+Event: 1.692 loading class 0x00000000026fe8e0
+Event: 1.692 loading class 0x00000000026fe8e0 done
+Event: 1.693 loading class 0x00000000026ff640
+Event: 1.693 loading class 0x00000000026ff640 done
+Event: 1.693 loading class 0x00000000026ff260
+Event: 1.693 loading class 0x00000000026ff260 done
+
+
+Dynamic libraries:
+0x000000013fdb0000 - 0x000000013fde3000 	C:\Program Files\Java\jre7\bin\javaw.exe
+0x0000000077bd0000 - 0x0000000077d79000 	C:\Windows\SYSTEM32\ntdll.dll
+0x0000000077ab0000 - 0x0000000077bcf000 	C:\Windows\system32\kernel32.dll
+0x000007fefd9c0000 - 0x000007fefda2c000 	C:\Windows\system32\KERNELBASE.dll
+0x000007fefeac0000 - 0x000007fefeb9b000 	C:\Windows\system32\ADVAPI32.dll
+0x000007fefe3d0000 - 0x000007fefe46f000 	C:\Windows\system32\msvcrt.dll
+0x000007fefdd50000 - 0x000007fefdd6f000 	C:\Windows\SYSTEM32\sechost.dll
+0x000007feffdb0000 - 0x000007feffedd000 	C:\Windows\system32\RPCRT4.dll
+0x00000000779b0000 - 0x0000000077aaa000 	C:\Windows\system32\USER32.dll
+0x000007fefea50000 - 0x000007fefeab7000 	C:\Windows\system32\GDI32.dll
+0x000007feffa00000 - 0x000007feffa0e000 	C:\Windows\system32\LPK.dll
+0x000007feff930000 - 0x000007feff9f9000 	C:\Windows\system32\USP10.dll
+0x000007fefc530000 - 0x000007fefc724000 	C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.7601.17514_none_fa396087175ac9ac\COMCTL32.dll
+0x000007feffd30000 - 0x000007feffda1000 	C:\Windows\system32\SHLWAPI.dll
+0x000007fefe0f0000 - 0x000007fefe11e000 	C:\Windows\system32\IMM32.DLL
+0x000007fefe470000 - 0x000007fefe579000 	C:\Windows\system32\MSCTF.dll
+0x0000000180000000 - 0x0000000180019000 	C:\PROGRA~2\KASPER~1\KASPER~1.0FO\x64\adialhk.dll
+0x0000000050270000 - 0x0000000050342000 	C:\Program Files\Java\jre7\bin\msvcr100.dll
+0x000000006de10000 - 0x000000006e5e3000 	C:\Program Files\Java\jre7\bin\server\jvm.dll
+0x000007fef9f00000 - 0x000007fef9f09000 	C:\Windows\system32\WSOCK32.dll
+0x000007fefdd70000 - 0x000007fefddbd000 	C:\Windows\system32\WS2_32.dll
+0x000007feffb90000 - 0x000007feffb98000 	C:\Windows\system32\NSI.dll
+0x000007fefb5b0000 - 0x000007fefb5eb000 	C:\Windows\system32\WINMM.dll
+0x0000000077da0000 - 0x0000000077da7000 	C:\Windows\system32\PSAPI.DLL
+0x0000000060700000 - 0x000000006070f000 	C:\Program Files\Java\jre7\bin\verify.dll
+0x0000000060650000 - 0x0000000060678000 	C:\Program Files\Java\jre7\bin\java.dll
+0x0000000060560000 - 0x0000000060595000 	C:\Program Files\Java\jre7\bin\jdwp.dll
+0x00000000606f0000 - 0x00000000606f8000 	C:\Program Files\Java\jre7\bin\npt.dll
+0x0000000060690000 - 0x00000000606a5000 	C:\Program Files\Java\jre7\bin\zip.dll
+
+VM Arguments:
+jvm_args: -agentlib:jdwp=transport=dt_socket,suspend=y,address=localhost:52726 -Dfile.encoding=Cp1252 
+java_command: coloring.Solver -file=C:\Users\jmartinez\Documents\DiscreteOptimization\coloring\data\gc_pru
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=C:\Program Files\Java\jdk1.8.0_25
+CLASSPATH=C:\Program Files (x86)\SAP\SAP Business One DI API\JCO\LIB\sbowrapper.jar;C:\Program Files (x86)\SAP\SAP Business One DI API\JCO\LIB\sboapi.jar;.;
+PATH=C:/Program Files/Java/jre1.8.0_31/bin/server;C:/Program Files/Java/jre1.8.0_31/bin;C:/Program Files/Java/jre1.8.0_31/lib/amd64;C:\Program Files (x86)\Python27\;C:\Program Files (x86)\Python27\Scripts;C:\ProgramData\Oracle\Java\javapath;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\Common Files\Microsoft Shared\Windows Live;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Mercurial\;C:\Program Files\MySQL\MySQL Server 5.5\bin;C:\Program Files (x86)\SAP\SAP Business One DI API\JCO\LIB\;C:\Program Files (x86)\SAP\SAP Business One\;C:\Program Files\ApacheFoundation\apache-maven-3.0.4\bin;C:\Program Files\Mercurial;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\Program Files\ApacheFoundation\apache-ant-1.8.4\bin;C:\Program Files\ApacheFoundation\axis2-1.6.2\bin;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files\ec2-api-tools-1.6.8.1\bin\;C:\Program Files\ffmpeg\bin;C:\Program Files (x86)\sbt\;C:\Program Files\cURL\bin;C:\Program Files (x86)\QuickTime\QTSystem\;C:\Program Files (x86)\AMD\ATI.ACE\Core-Static;C:\Program Files (x86)\Intel\OpenCL SDK\2.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\2.0\bin\x64;C:\Program Files (x86)\Skype\Phone\;C:\Program Files\Java\jdk1.8.0_25\bin;;C:\Program Files\eclipse;
+USERNAME=jmartinez
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 42 Stepping 7, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 7 , 64 bit Build 7601 Service Pack 1
+
+CPU:total 4 (4 cores per cpu, 1 threads per core) family 6 model 42 stepping 7, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, aes, tsc, tscinvbit
+
+Memory: 4k page, physical 4166716k(701512k free), swap 9545824k(3564k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (24.71-b01) for windows-amd64 JRE (1.7.0_71-b14), built on Sep 26 2014 16:16:12 by "java_re" with unknown MS VC++:1600
+
+time: Mon Mar 23 17:23:43 2015
+elapsed time: 3 seconds
+
