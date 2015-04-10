@@ -9,6 +9,7 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.PriorityQueue;
+import java.util.Random;
 import java.util.Set;
 
 
@@ -104,8 +105,25 @@ public class Solver {
         for (int i=0;i<MST.size();i++){
         	path[i] = MST.get(i).getId();
         }
-        
         double totalDistance = calculeDistante(path);
+        double temp = totalDistance*0.85;
+        while(temp < totalDistance){
+        	Random e =new Random();
+        	int a = e.nextInt(path.length);int b = e.nextInt(path.length);
+        	int x = path[a];int y = path[b];
+        	path[a]=y;path[b]=x;
+        	double temptotalDistance = calculeDistante(path);
+        	if (temptotalDistance >= totalDistance){
+        		path[a]=x;path[b]=y;
+        	}else {
+        		totalDistance = temptotalDistance;
+        		System.out.println(totalDistance+"  0");
+        	}
+        	
+        }
+        
+        
+       // double totalDistance = calculeDistante(path);
         System.out.println(totalDistance+"  0");
         for (int i=0;i<path.length;i++)
         	System.out.print(path[i]+" ");
