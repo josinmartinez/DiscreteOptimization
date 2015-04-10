@@ -86,10 +86,6 @@ public class Solver {
 		return (B > A)? distances[j]:distances[i];
 	}
 	
-	private double getDistance(Edge e){
-		return getDistance(e.getV1().getId(),e.getV2().getId());
-	}
-	
 	
 	private void setDistance(int A, int B, double distance){
 		int i = (A*A - A)/2 + B;
@@ -105,20 +101,26 @@ public class Solver {
         readFileInput(args);
         List<Vertex> MST = prim(vertexList, edgeList);
         int[] path = new int[vertexList.size()];
-        int i = 0;
-        double totalDistance = 0;
-        int start = MST.get(0).getId();
-        path[i]=start;
-        for (i=1;i<MST.size();i++){
+        for (int i=0;i<MST.size();i++){
         	path[i] = MST.get(i).getId();
-        	totalDistance += getDistance(path[i-1],path[i]);
         }
-        totalDistance += getDistance(start,path[i-1]);
+        
+        double totalDistance = calculeDistante(path);
         System.out.println(totalDistance+"  0");
-        for (i=0;i<path.length;i++)
+        for (int i=0;i<path.length;i++)
         	System.out.print(path[i]+" ");
 
     }
+
+	private double calculeDistante(int[] path) {
+		double totalDistance = 0;
+        int start = path[0];
+        for (int i=1;i<path.length;i++){
+        	totalDistance += getDistance(path[i-1],path[i]);
+        }
+        totalDistance += getDistance(start,path[path.length-1]);
+		return totalDistance;
+	}
 	
 	private List<Vertex> prim(List<Vertex> V, List<Edge>E){
 		Vertex start = chooseInitialVertex(V);
@@ -163,27 +165,11 @@ public class Solver {
 	
 	private void computeAllMinEdges(Vertex start, Set<Vertex> V_X, PriorityQueue<Vertex> heap){
 		for (Vertex v: V_X){
-			//Vertex minVertex = computeMinEdgeByVertex(v, start);
 			v.setMinEdge(new Edge(start,v));
 			heap.add(v);
 		}
 	}
 
-	private Vertex computeMinEdgeByVertex(Vertex v, Vertex start) {
-		double minValue = Double.MAX_VALUE;
-		Vertex minVertex = null;
-		for (int i=0;i < vertexList.size();i++){
-			double temp = getDistance(v.getId(),i);
-			if (temp < minValue){
-				minValue = temp;
-				minVertex = vertexList.get(i);
-			}
-		}
-		return minVertex;
-	}
-
-	
-	
 
 	private Vertex chooseInitialVertex(List<Vertex> V) {
 		Vertex initial = V.get(0);
