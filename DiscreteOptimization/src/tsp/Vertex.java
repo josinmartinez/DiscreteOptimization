@@ -12,6 +12,7 @@ class Vertex{
 		this.id = id;
 		this.x = x;
 		this.y = y;
+		minEdge = null;
 	}
 	
 	public int getId() {
