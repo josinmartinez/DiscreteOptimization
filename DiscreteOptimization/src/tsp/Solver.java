@@ -89,7 +89,6 @@ public class Solver {
 		return (B > A)? distances[j]:distances[i];
 	}
 	
-	
 	private void setDistance(int A, int B, double distance){
 		int i = (A*A - A)/2 + B;
 		int j = (B*B - B)/2 + A;
@@ -99,7 +98,6 @@ public class Solver {
 		else distances[i]=distance;
 	}
 
-	
 	public void solve(String[] args) throws IOException{
         readFileInput(args);
         
@@ -111,18 +109,21 @@ public class Solver {
         }
         double totalDistance = calculeDistante(path);
         System.out.println("Phase I:"+totalDistance);
-        System.out.println(totalDistance+"  0");
-        for (int i=0;i<path.length;i++)
-        	System.out.print(path[i]+" ");
+        showSolution(path, totalDistance);
 
-        //Random Improvements Phase II
-        //totalDistance = runPhaseII(path, totalDistance, 10000, 0.8);
-        //System.out.println("Phase II:"+totalDistance);
         
+        //Random Improvements Phase II
+        totalDistance = runPhaseII(path, totalDistance, 1000000, 0.3);
+        System.out.println("Phase II:"+totalDistance);
+        showSolution(path, totalDistance);
+
+/*        
         //Remove Cross Edges Phase III
         Map<Integer, Vertex> mapV = new HashMap<Integer,Vertex>();
         for (Vertex v: vertexList) mapV.put(v.getId(), v);
 
+        int veces=0;
+        while(veces<10){
         List<Edge> listEdges = new ArrayList<Edge>();
         for (int i=1;i<path.length;i++){
         	Vertex v1 = mapV.get(path[i-1]);
@@ -152,10 +153,13 @@ public class Solver {
         	if (crossed) {
     			extractVertex(recalculateVertex, iEdge);
     			badEdges.add(iEdge);
-    			OPT2(mapV,listEdges,iEdge,jEdge);	
+    			OPT2(mapV,listEdges,iEdge,jEdge,path);
+    			listEdges.remove(i);listEdges.remove(jEdge);
         	}
         }
         listEdges.removeAll(badEdges);
+        veces++;
+        }
 /*        
         List<Integer> list = new ArrayList<Integer>();
         for (Integer i: recalculateVertex.keySet()){
@@ -183,7 +187,7 @@ public class Solver {
         	recalculateVertex.put(id,recalculateVertex.get(id)-1);
         	if (add) listEdges.add(new Edge(mapV.get(id),mapV.get(minId)));
         }
-*/        
+        
         for (int i=0;i<path.length;i++){
         	path[i]=0;
         }
@@ -204,30 +208,49 @@ public class Solver {
         	else
         		System.out.println();
         }
+*/
         totalDistance = calculeDistante(path);
         System.out.println("Phase III:"+totalDistance);
         
-       // double totalDistance = calculeDistante(path);
-        System.out.println(totalDistance+"  0");
+       showSolution(path, totalDistance);
+    }
+
+	private void showSolution(int[] path, double totalDistance) {
+		System.out.println(totalDistance+"  0");
         for (int i=0;i<path.length;i++)
         	System.out.print(path[i]+" ");
         System.out.println();
-    }
+	}
 
-	private void OPT2(Map<Integer, Vertex> mapV, List<Edge> listEdges, Edge iEdge, Edge jEdge) {
+	private void OPT2(Map<Integer, Vertex> mapV, List<Edge> listEdges, Edge iEdge, Edge jEdge, int[] path) {
 		int iv1 = iEdge.getV1().getId();
 		int iv2 = iEdge.getV2().getId();
 		int jv1 = jEdge.getV1().getId();
 		int jv2 = jEdge.getV2().getId();
-		if (iv1==17||iv2==17||jv1==17||jv2==17)
-			System.out.println();
 		if (getDistance(iv1,jv1) < getDistance(iv1,jv2)){
 			listEdges.add(new Edge(mapV.get(iv1),mapV.get(jv1)));
 			listEdges.add(new Edge(mapV.get(iv2),mapV.get(jv2)));
+			swap(iv2,jv1,path);
 		}else{
 			listEdges.add(new Edge(mapV.get(iv1),mapV.get(jv2)));
 			listEdges.add(new Edge(mapV.get(iv2),mapV.get(jv1)));
+			swap(iv2,jv2,path);
 		}
+	}
+	
+	private int findIndex(int[] path, int value){
+		for (int i=0;i<path.length;i++){
+			if (path[i] == value) return i;
+		}
+		return -1;
+	}
+	
+	private void swap(int a, int b, int[] path){
+		int idA = findIndex(path,a);
+		int idB = findIndex(path,b);
+		int temp = path[idA];
+		path[idA] = path[idB];
+		path[idB]=temp;
 	}
 
 	private void extractVertex(Map<Integer, Integer> recalculateVertex, Edge jEdge) {
