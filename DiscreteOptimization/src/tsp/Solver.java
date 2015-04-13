@@ -103,20 +103,20 @@ public class Solver {
 	}
 
 	public void solve(String[] args) throws IOException{
-        System.out.print("Leyendo fichero.......");
+        //System.out.print("Leyendo fichero.......");
 		readFileInput(args);
-        System.out.println("[DONE]");
+        //System.out.println("[DONE]");
         //First Solution Greedy Algorithm
-        System.out.print("Construyendo grafo.......");
+        //System.out.print("Construyendo grafo.......");
         int[] path = greedyAlgo(vertexList);//Greedy
-        System.out.println("[DONE]");
-        System.out.print("Aleatorizando.......");
+        //System.out.println("[DONE]");
+        //System.out.print("Aleatorizando.......");
         //Random Improvements Phase II
         double totalDistance = calculeDistante(path);
-        totalDistance = runPhaseII(path, totalDistance, 1000000, 0.7);
-        System.out.println("Phase II:"+totalDistance);
+        totalDistance = runPhaseII(path, totalDistance, 100000, 0.7);
+        //System.out.println("Phase II:"+totalDistance);
         showSolution(path, totalDistance);
-        System.out.println("[DONE]");
+        //System.out.println("[DONE]");
     }
 
 	private int[] greedyAlgo(List<Vertex> vertexList) {
@@ -155,9 +155,9 @@ public class Solver {
 				}
 			}
 		}
-		double totalDistance = calculeDistante(path);
-	    System.out.println("Algo:"+totalDistance);
-        showSolution(path, totalDistance);
+		//double totalDistance = calculeDistante(path);
+	    //System.out.println("Algo:"+totalDistance);
+        //showSolution(path, totalDistance);
         return path;
 	}
 
@@ -207,7 +207,7 @@ public class Solver {
         	}
         	tries++;
         }
-        System.out.println(tries);
+        //System.out.println(tries);
 		return totalDistance;
 	}
 
