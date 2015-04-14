@@ -113,9 +113,9 @@ public class Solver {
         //System.out.print("Aleatorizando.......");
         //Random Improvements Phase II
         double totalDistance = calculeDistante(path);
-        totalDistance = runPhaseII(path, totalDistance, 100000, 0.7);
+        //path = runPhaseII(path, totalDistance, Math.min((int)Math.round(path.length*0.10),10),Math.min(path.length*100,1000), 0.7);
         //System.out.println("Phase II:"+totalDistance);
-        showSolution(path, totalDistance);
+        showSolution(path, calculeDistante(path));
         //System.out.println("[DONE]");
     }
 
@@ -191,24 +191,38 @@ public class Solver {
         System.out.println();
 	}
 
-	private double runPhaseII(int[] path, double totalDistance, int MaxTrials, double coef) {
+	private int[] runPhaseII(int[] path, double totalDistance, int maxTrials, int maxSwaps, double coef) {
+		int []bestpath = new int[path.length];	System.arraycopy(path, 0, bestpath, 0, path.length);
+		double bestpathDistance = totalDistance;
 		double temp = totalDistance*coef;
-        int tries = 0; 
-        while(tries < MaxTrials && temp < totalDistance){
-        	Random e =new Random();
-        	int a = e.nextInt(path.length);int b = e.nextInt(path.length);
-        	int x = path[a];int y = path[b];
-        	path[a]=y;path[b]=x;
-        	double temptotalDistance = calculeDistante(path);
-        	if (temptotalDistance >= totalDistance){
-        		path[a]=x;path[b]=y;
-        	}else {
-        		totalDistance = temptotalDistance;
-        	}
-        	tries++;
+
+		//maxTrials=2;
+        for (int i=0;i < maxTrials; i++){
+		    int[]pathtemp = new int[path.length];
+		    System.arraycopy(bestpath, 0, pathtemp, 0, path.length);
+		    double pathtempdistance = bestpathDistance;
+			int tries = 0; 
+		    while(tries < maxSwaps && temp < pathtempdistance){
+		    	Random e =new Random();
+		    	int a = e.nextInt(path.length);int b = e.nextInt(path.length);
+		    	int x = pathtemp[a];int y = pathtemp[b];
+		    	pathtemp[a]=y;pathtemp[b]=x;
+		    	double temptotalDistance = calculeDistante(pathtemp);
+		    	if (temptotalDistance >= pathtempdistance){
+		    		pathtemp[a]=x;pathtemp[b]=y;
+		    	}else {
+		    		pathtempdistance = temptotalDistance;
+		    	}
+		    	tries++;
+		    }
+		    if (pathtempdistance < bestpathDistance){
+		    	System.arraycopy(pathtemp, 0, bestpath, 0, path.length);
+		    	bestpathDistance = pathtempdistance;
+		    	//System.out.println(bestpathDistance+" "+tries);
+		    }
         }
         //System.out.println(tries);
-		return totalDistance;
+		return bestpath;
 	}
 
 	private double calculeDistante(int[] path) {
